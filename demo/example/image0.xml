@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<annotation>
+		<folder/>
+		<filename>test\image0.png</filename>
+		<size>
+			<width>384</width>
+			<height>384</height>
+			<depth>3</depth>
+		</size>
+		<object>
+			<difficult>0</difficult>
+			<name>1</name>
+			<bndbox>
+				<xmin>3</xmin>
+				<ymin>39</ymin>
+				<xmax>80</xmax>
+				<ymax>51</ymax>
+			</bndbox>
+		</object>
+	</annotation>

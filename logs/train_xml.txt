@@ -1,0 +1,1 @@
+/home/zsz/datasets/weblmtImage 26081096.0_242.0_1377.0_456.0.png,save_xml/weblmtImage 26081096.0_242.0_1377.0_456.0.xml
