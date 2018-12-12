@@ -178,6 +178,7 @@ def textboxes_feat_shapes_from_net(predictions, default_shapes=None):
     """
     feat_shapes = []
     for l in predictions:
+        print(l)
         shape = l.get_shape().as_list()[1:3]
         # shape = tuple(l[1:3])
 
@@ -220,7 +221,7 @@ def text_multibox_layer(layer,
     # Class prediction.
     scores_pred = num_prior_per_location * num_classes
     sco_pred = slim.conv2d(net, scores_pred, [3, 5], activation_fn=None, padding='SAME',scope='conv_cls')
-    l_shape = sco_pred.get_shape().as_list()
+    l_shape = tf.shape(sco_pred)
     sco_pred = slim.flatten(sco_pred)
     sco_pred = tf.reshape(sco_pred, [batch_size, -1 ,2])
     return sco_pred, loc_pred, l_shape

@@ -657,7 +657,7 @@ class DeploymentConfig(object):
         device = ''
         if self._num_ps_tasks > 0:
             device += self._worker_device
-        device += '/device:GPU:0'
+        device += '/device:CPU:0'
         return device
 
     def variables_device(self):

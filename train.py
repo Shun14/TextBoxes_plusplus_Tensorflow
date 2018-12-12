@@ -25,7 +25,7 @@ from tf_extended import tf_utils
 import os
 import tensorflow.contrib.slim as slim
 
-os.environ['CUDA_VISIBLE_DEVICES'] = '4'
+os.environ['CUDA_VISIBLE_DEVICES'] = '1'
 
 # =========================================================================== #
 # Text Network flags.
@@ -42,7 +42,7 @@ tf.app.flags.DEFINE_boolean('large_training', False, 'Use 768 to train')
 # =========================================================================== #
 tf.app.flags.DEFINE_string(
     'train_dir',
-    'dssd_tfmodel/only_10th_data_with_the_new_pic',
+    'icdar15_model/',
     'Directory where checkpoints and event logs are written to.')
 tf.app.flags.DEFINE_integer('num_clones', 1,
                             'Number of model clones to deploy.')
@@ -63,7 +63,7 @@ tf.app.flags.DEFINE_integer(
 tf.app.flags.DEFINE_integer(
     'save_interval_secs', 1200,
     'The frequency with which the model is saved, in seconds.')
-tf.app.flags.DEFINE_float('gpu_memory_fraction', 0.85,
+tf.app.flags.DEFINE_float('gpu_memory_fraction', 0.9,
                           'GPU memory fraction to use.')
 
 # =========================================================================== #
@@ -132,14 +132,14 @@ tf.app.flags.DEFINE_integer('num_classes', 2,
 tf.app.flags.DEFINE_string('dataset_split_name', 'train',
                            'The name of the train/test split.')
 tf.app.flags.DEFINE_string(
-    'dataset_dir', '/home/zsz/test/tfrecords',
+    'dataset_dir', './icdar15_tf',
     ' The directory where the dataset files are stored.')
 tf.app.flags.DEFINE_integer(
     'labels_offset', 0,
     'An offset for the labels in the dataset. This flag is primarily used to '
     'evaluate the VGG and ResNet architectures which do not use a background '
     'class for the ImageNet dataset.')
-tf.app.flags.DEFINE_string('model_name', 'txtbox_384',
+tf.app.flags.DEFINE_string('model_name', 'text_box_384',
                            'The name of the architecture to train.')
 tf.app.flags.DEFINE_string(
     'preprocessing_name', None,
@@ -148,15 +148,16 @@ tf.app.flags.DEFINE_string(
 tf.app.flags.DEFINE_integer('batch_size', 16,
                             'The number of samples in each batch.')
 tf.app.flags.DEFINE_integer('train_image_size', None, 'Train image size')
-tf.app.flags.DEFINE_string('training_image_crop_area', '1.0, 1.0',
+tf.app.flags.DEFINE_string('training_image_crop_area', '0.1, 1.0',
                            'the area of image process for training')
-tf.app.flags.DEFINE_integer('max_number_of_steps', 200000,
+tf.app.flags.DEFINE_integer('max_number_of_steps', 60000,
                             'The maxim number of training steps.')
 # =========================================================================== #
 # Fine-Tuning Flags.
 # =========================================================================== #
 tf.app.flags.DEFINE_string(
-    'checkpoint_path','/home/zsz/test/synth',
+    #'checkpoint_path','/home/zsz/code/TextBoxes_plusplus_Tensorflow/vgg_model/vgg_16.ckpt',
+    'checkpoint_path', './polygon_model/',
     'The path to a checkpoint from which to fine-tune.')
 tf.app.flags.DEFINE_string(
     'checkpoint_model_scope', None,

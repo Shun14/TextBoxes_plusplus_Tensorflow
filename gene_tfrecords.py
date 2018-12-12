@@ -17,7 +17,7 @@ tf.app.flags.DEFINE_string(
 )
 
 tf.app.flags.DEFINE_integer(
-    'samples_per_files', 200,
+    'samples_per_files', 2000,
     'the number means one tf_record save how many pictures'
 )
 

@@ -25,7 +25,7 @@ def get_datasets(data_dir,file_pattern = '*.tfrecord'):
     file_path_list = glob.glob(file_patterns)
     num_samples = 0
     #num_samples = 288688
-    #num_samples = 858750
+    #num_samples = 858750 only for synth datasets
     for file_path in file_path_list:
         for record in tf.python_io.tf_record_iterator(file_path):
             num_samples += 1

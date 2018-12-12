@@ -56,6 +56,10 @@ def _process_image(train_img_path, train_xml_path, name):
 
     for obj in root.findall('object'):
         label = obj.find('name').text
+        if label == '###' or label == 'none':
+            label = 'none'
+        else:
+            label = 'text'
         labels.append(int(TXT_LABELS[label][0]))
         labels_text.append(label.encode('ascii'))
 
@@ -147,7 +151,7 @@ def _convert_to_example(image_data, labels, labels_text, bboxes, shape,
             'image/width': int64_feature(shape[1]),
             'image/channels': int64_feature(shape[2]),
             'image/shape': int64_feature(shape),
-            'image/filename': bytes_feature(filename),
+            'image/filename': bytes_feature(filename.encode('utf-8')),
             'image/object/bbox/xmin': float_feature(xmin),
             'image/object/bbox/xmax': float_feature(xmax),
             'image/object/bbox/ymin': float_feature(ymin),

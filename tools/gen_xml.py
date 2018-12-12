@@ -28,7 +28,7 @@ def process_convert(txt_name, DIRECTORY_ANNOTATIONS, new_version=True):
     nodeFilename.appendChild(annotation_xml.createTextNode(filename))
     root.appendChild(nodeFilename)
 
-    img_name = filename[:-4] + '.png'
+    img_name = filename[:-4]
     if cv2.imread(img_name) is not None:
         h, w, c = cv2.imread(img_name).shape
     else:
@@ -49,9 +49,18 @@ def process_convert(txt_name, DIRECTORY_ANNOTATIONS, new_version=True):
         l = l.strip().split(',')
         difficult = 0
         label = 1
+        x1_text = ''
+        x2_text = ''
+        x3_text = ''
+        x4_text = ''
+        y1_text = ''
+        y2_text = ''
+        y3_text = ''
+        y4_text = ''
+
         if new_version is True:
-            label_name = str(l[0])
-            if label_name == 'none':
+            label_name = str(l[-1])
+            if label_name == 'none' or label_name == '###':
                 difficult = 1
             else:
                 difficult = 0
@@ -60,6 +69,15 @@ def process_convert(txt_name, DIRECTORY_ANNOTATIONS, new_version=True):
             ymin_text = str(int(float(l[2])))
             xmax_text = str(int(float(l[3])))
             ymax_text = str(int(float(l[4])))
+            x1_text = xmin_text
+            x2_text = xmax_text
+            x3_text = xmax_text
+            x4_text = xmin_text
+
+            y1_text = ymin_text
+            y2_text = ymin_text
+            y3_text = ymax_text
+            y4_text = ymax_text
         else:
             xs = [ int(l[i])  for i in (0, 2, 4, 6)]
             ys = [ int(l[i]) for i in (1, 3, 5, 7)]
@@ -67,6 +85,15 @@ def process_convert(txt_name, DIRECTORY_ANNOTATIONS, new_version=True):
             ymin_text = str(min(ys))
             xmax_text = str(max(xs))
             ymax_text = str(max(ys))
+            x1_text = str(xs[0])
+            x2_text = str(xs[1])
+            x3_text = str(xs[2])
+            x4_text = str(x3[3])
+
+            y1_text = str(ys[0])
+            y2_text = str(ys[1])
+            y3_text = str(ys[2])
+            y4_text = str(y3[3])
 
 
         nodeObject = annotation_xml.createElement('object')
@@ -74,9 +101,6 @@ def process_convert(txt_name, DIRECTORY_ANNOTATIONS, new_version=True):
         nodeDifficult.appendChild(annotation_xml.createTextNode(str(difficult)))
         nodeName = annotation_xml.createElement('name')
         nodeName.appendChild(annotation_xml.createTextNode(str(label)))
-
-
-
 
         nodeBndbox = annotation_xml.createElement('bndbox')    
         nodexmin = annotation_xml.createElement('xmin')
@@ -89,25 +113,25 @@ def process_convert(txt_name, DIRECTORY_ANNOTATIONS, new_version=True):
         nodeymax.appendChild(annotation_xml.createTextNode(ymax_text))
 
         nodex1 = annotation_xml.createElement('x1')
-        nodex1.appendChild(annotation_xml.createTextNode(xmin_text))
+        nodex1.appendChild(annotation_xml.createTextNode(x1_text))
         nodex2 = annotation_xml.createElement('x2')
-        nodex2.appendChild(annotation_xml.createTextNode(xmax_text))
+        nodex2.appendChild(annotation_xml.createTextNode(x2_text))
         nodex3 = annotation_xml.createElement('x3')
-        nodex3.appendChild(annotation_xml.createTextNode(xmax_text))
+        nodex3.appendChild(annotation_xml.createTextNode(x3_text))
         nodex4 = annotation_xml.createElement('x4')
-        nodex4.appendChild(annotation_xml.createTextNode(xmin_text))
+        nodex4.appendChild(annotation_xml.createTextNode(x4_text))
 
 
         nodey1 = annotation_xml.createElement('y1')
-        nodey1.appendChild(annotation_xml.createTextNode(ymin_text))
+        nodey1.appendChild(annotation_xml.createTextNode(y1_text))
 
         nodey2 = annotation_xml.createElement('y2')
-        nodey2.appendChild(annotation_xml.createTextNode(ymin_text))
+        nodey2.appendChild(annotation_xml.createTextNode(y2_text))
 
         nodey3 = annotation_xml.createElement('y3')
-        nodey3.appendChild(annotation_xml.createTextNode(ymax_text))
+        nodey3.appendChild(annotation_xml.createTextNode(y3_text))
         nodey4 = annotation_xml.createElement('y4')
-        nodey4.appendChild(annotation_xml.createTextNode(ymax_text))
+        nodey4.appendChild(annotation_xml.createTextNode(y4_text))
 
         nodeBndbox.appendChild(nodexmin)
         nodeBndbox.appendChild(nodeymin)
@@ -136,7 +160,7 @@ def process_convert(txt_name, DIRECTORY_ANNOTATIONS, new_version=True):
 
     
 
-def get_all_txt(directory, new_version=True):
+def get_all_txt(directory, new_version=False):
     count = 0
     for root,dirs,files in os.walk(directory):
         for each in files:

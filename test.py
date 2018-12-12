@@ -52,9 +52,9 @@ class TextboxesDetection(object):
         self.save_xml_flag = True
         self.save_txt_flag = True
         self.dynamic_scale_flag = False
-        self.allow_padding = True
-        self.allow_post_processing = True
-        self.allow_eval_flag = True
+        self.allow_padding = False
+        self.allow_post_processing = False
+        self.allow_eval_flag = False
         self.resize_flag = False
         self.save_eval_resut_path = save_res_path
         self.model_path = None
@@ -714,7 +714,7 @@ if __name__ == '__main__':
         '--in_dir',
         '-i',
         default=
-        '/home/zsz/datasets/huawei_anno/eval_img_2018.9.25/huawei_eval_final',
+        '/home/zsz/datasets/text_det/icdar15/test_images/',
         type=str)
     parser.add_argument(
         '--out_dir', '-o', default='huawei_scale_test/3000_with', type=str)
@@ -725,8 +725,8 @@ if __name__ == '__main__':
         '/home/zsz/test/dssd_tfmodel/only_10th_data_with_the_new_pic',
         type=str)
     parser.add_argument('--cuda_device', '-c', default='3', type=str)
-    parser.add_argument('--nms_th', '-n', default=0.6, type=float)
-    parser.add_argument('--score_th','-s', default=0.4, type=float)
+    parser.add_argument('--nms_th', '-n', default=0.5, type=float)
+    parser.add_argument('--score_th','-s', default=0.1, type=float)
     parser.add_argument('--save_res_path', '-r', default='eval_res.txt', type=str)
     #2:read gt from txt format:(text score xmin ymin xmax ymax)
     args = parser.parse_args()
@@ -744,7 +744,7 @@ if __name__ == '__main__':
         out_dir,
         nms_th,
         score_th,
-        scales=[(384, 384),(768, 768)],
+        scales=[(768, 768)],
         save_res_path=save_res_path
         )
     instance.start_inference()

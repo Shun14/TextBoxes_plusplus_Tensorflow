@@ -224,8 +224,7 @@ def get_init_fn(flags):
             {var.op.name.replace(flags.model_name,
                                  flags.checkpoint_model_scope): var
              for var in variables_to_restore}
-
-
+    print(variables_to_restore)
     if tf.gfile.IsDirectory(flags.checkpoint_path):
         checkpoint_path = tf.train.latest_checkpoint(flags.checkpoint_path)
     else:
