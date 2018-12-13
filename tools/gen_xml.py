@@ -46,6 +46,7 @@ def process_convert(txt_name, DIRECTORY_ANNOTATIONS, new_version=True):
     nodeSize.appendChild(nodeDepth)
     root.appendChild(nodeSize)    
     for l in lines:
+        l = l.encode('utf-8').decode('utf-8-sig')
         l = l.strip().split(',')
         difficult = 0
         label = 1
@@ -79,6 +80,7 @@ def process_convert(txt_name, DIRECTORY_ANNOTATIONS, new_version=True):
             y3_text = ymax_text
             y4_text = ymax_text
         else:
+            print(l)
             xs = [ int(l[i])  for i in (0, 2, 4, 6)]
             ys = [ int(l[i]) for i in (1, 3, 5, 7)]
             xmin_text = str(min(xs))
@@ -88,12 +90,12 @@ def process_convert(txt_name, DIRECTORY_ANNOTATIONS, new_version=True):
             x1_text = str(xs[0])
             x2_text = str(xs[1])
             x3_text = str(xs[2])
-            x4_text = str(x3[3])
+            x4_text = str(xs[3])
 
             y1_text = str(ys[0])
             y2_text = str(ys[1])
             y3_text = str(ys[2])
-            y4_text = str(y3[3])
+            y4_text = str(ys[3])
 
 
         nodeObject = annotation_xml.createElement('object')
@@ -178,4 +180,4 @@ if  __name__ == '__main__':
     parser.add_argument('--in_dir','-i', default='/home/zsz/datasets/huawei_anno/eval_img_2018.9.25/huawei_eval_final', type=str)
     args = parser.parse_args()
     directory = args.in_dir
-    get_all_txt(directory, True)
+    get_all_txt(directory, False)
