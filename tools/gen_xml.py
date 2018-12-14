@@ -61,7 +61,7 @@ def process_convert(txt_name, DIRECTORY_ANNOTATIONS, new_version=True):
 
         if new_version is True:
             label_name = str(l[-1])
-            if label_name == 'none' or label_name == '###':
+            if label_name == 'none':
                 difficult = 1
             else:
                 difficult = 0
