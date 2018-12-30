@@ -744,7 +744,7 @@ if __name__ == '__main__':
         out_dir,
         nms_th,
         score_th,
-        scales=[(768, 768)],
+        scales=[(384, 384)],
         save_res_path=save_res_path
         )
     instance.start_inference()

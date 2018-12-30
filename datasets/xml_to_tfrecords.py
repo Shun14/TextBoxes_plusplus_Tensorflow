@@ -56,7 +56,7 @@ def _process_image(train_img_path, train_xml_path, name):
 
     for obj in root.findall('object'):
         label = obj.find('name').text
-        if label == '###' or label == 'none':
+        if label == 'none':
             label = 'none'
         else:
             label = 'text'

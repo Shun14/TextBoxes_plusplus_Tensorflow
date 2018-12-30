@@ -149,7 +149,7 @@ tf.app.flags.DEFINE_integer('batch_size', 16,
 tf.app.flags.DEFINE_integer('train_image_size', None, 'Train image size')
 tf.app.flags.DEFINE_string('training_image_crop_area', '0.1, 1.0',
                            'the area of image process for training')
-tf.app.flags.DEFINE_integer('max_number_of_steps', 60000,
+tf.app.flags.DEFINE_integer('max_number_of_steps', 120000,
                             'The maxim number of training steps.')
 # =========================================================================== #
 # Fine-Tuning Flags.
