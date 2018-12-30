@@ -174,8 +174,8 @@ def get_all_txt(directory, new_version=False):
 
 if  __name__ == '__main__':
     import argparse
-    parser = argparse.ArgumentParser(description='huawei generate xml tools')
-    parser.add_argument('--in_dir','-i', default='/home/zsz/datasets/huawei_anno/eval_img_2018.9.25/huawei_eval_final', type=str)
+    parser = argparse.ArgumentParser(description='icdar15 generate xml tools')
+    parser.add_argument('--in_dir','-i', default='/home/zsz/datasets/icdar15_anno/eval_img_2018.9.25/icdar15_eval_final', type=str)
     args = parser.parse_args()
     directory = args.in_dir
     get_all_txt(directory, True)

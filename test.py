@@ -709,7 +709,7 @@ def nms_eff(boxes_list, score, overlap):
 
 if __name__ == '__main__':
     import argparse
-    parser = argparse.ArgumentParser(description='huawei test model')
+    parser = argparse.ArgumentParser(description='icdar15 test model')
     parser.add_argument(
         '--in_dir',
         '-i',
@@ -717,7 +717,7 @@ if __name__ == '__main__':
         '/home/zsz/datasets/text_det/icdar15/test_images/',
         type=str)
     parser.add_argument(
-        '--out_dir', '-o', default='huawei_scale_test/3000_with', type=str)
+        '--out_dir', '-o', default='icdar15_scale_test/3000_with', type=str)
     parser.add_argument(
         '--model_dir',
         '-m',

@@ -24,8 +24,7 @@ from processing import ssd_vgg_preprocessing
 from tf_extended import tf_utils
 import os
 import tensorflow.contrib.slim as slim
-
-os.environ['CUDA_VISIBLE_DEVICES'] = '1'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 # =========================================================================== #
 # Text Network flags.
@@ -132,7 +131,7 @@ tf.app.flags.DEFINE_integer('num_classes', 2,
 tf.app.flags.DEFINE_string('dataset_split_name', 'train',
                            'The name of the train/test split.')
 tf.app.flags.DEFINE_string(
-    'dataset_dir', './icdar15_tf',
+    'dataset_dir', 'icdar15_tf',
     ' The directory where the dataset files are stored.')
 tf.app.flags.DEFINE_integer(
     'labels_offset', 0,
@@ -156,8 +155,8 @@ tf.app.flags.DEFINE_integer('max_number_of_steps', 60000,
 # Fine-Tuning Flags.
 # =========================================================================== #
 tf.app.flags.DEFINE_string(
-    #'checkpoint_path','/home/zsz/code/TextBoxes_plusplus_Tensorflow/vgg_model/vgg_16.ckpt',
-    'checkpoint_path', './polygon_model/',
+    #'checkpoint_path','/home/zsz/code/TextBoxes_plusplus_Tensorflow/model/vgg_fc_16_model/vgg_16.ckpt',
+    'checkpoint_path', '/home/zsz/TextBoxes_plusplus/models/ckpt/',
     'The path to a checkpoint from which to fine-tune.')
 tf.app.flags.DEFINE_string(
     'checkpoint_model_scope', None,

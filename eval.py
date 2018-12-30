@@ -51,8 +51,8 @@ class EVAL_MODEL(object):
         self.data_type = data_type
         self.save_result_path = save_result_path
 
-        self.allow_post_processing = True
-        self.draw_err_pic_flag = False
+        self.allow_post_processing = False
+        self.draw_err_pic_flag = True
         self.xml_path_list = []
         self.pre_img_name_list = []
         self.eval_data_dict = {}
@@ -243,7 +243,7 @@ class EVAL_MODEL(object):
 
     def save_error_eval(self, img_name, error_eval_list, error_pre_list):
         # img_path = os.path.join(self.eval_data_dir, img_name)
-        img_path = os.path.join(self.eval_data_dir, img_name + '.png')
+        img_path = os.path.join(self.eval_data_dir, img_name + '.jpg')
         img = cv2.imread(img_path)
 
         if img is None:
@@ -377,12 +377,12 @@ class EVAL_MODEL(object):
 
 if __name__ == '__main__':
 
-    parser = ArgumentParser(description='huawei eval model')
+    parser = ArgumentParser(description='icdar15 eval model')
     parser.add_argument(
         '--eval_data_dir',
         '-d',
         default=
-        '/home/zsz/datasets/huawei_anno/eval_img_2018.9.25/huawei_eval_final',
+        '/home/zsz/datasets/icdar15/test_gts/',
         type=str)
     #xml and img in same dir
     parser.add_argument('--pre_data_dir', '-p', type=str)

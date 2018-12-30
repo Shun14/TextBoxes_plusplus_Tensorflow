@@ -194,7 +194,7 @@ def _add_to_tfrecord(train_img_path, train_xml_path , name, tfrecord_writer):
     tfrecord_writer.write(example.SerializeToString())
 
 
-def run(xml_img_txt_path, output_dir, name='huawei_annotated_data', samples_per_files=200):
+def run(xml_img_txt_path, output_dir, name='icdar15_annotated_data', samples_per_files=200):
     """Runs the conversion operation.
 	Args:
 	  xml_img_txt_path: The txt stored where the dataset is stored.

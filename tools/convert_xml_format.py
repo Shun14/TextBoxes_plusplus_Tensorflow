@@ -229,12 +229,12 @@ def save_to_text(img_path_list, ano_path_list, count, split_flag, logs_dir):
 if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser(
-        description='huawei generate xml tools for standard format')
+        description='icdar15 generate xml tools for standard format')
     parser.add_argument(
         '--in_dir',
         '-i',
         default=
-        '/home/zsz/datasets/huawei_anno/annotated_data_3rd_8thv2_cut_resize_margin8',
+        '/home/zsz/datasets/icdar15_anno/annotated_data_3rd_8thv2_cut_resize_margin8',
         type=str)
     parser.add_argument('--split_flag', '-s', default='no', type=str)
     parser.add_argument('--save_logs', '-l', default='logs', type=str)
