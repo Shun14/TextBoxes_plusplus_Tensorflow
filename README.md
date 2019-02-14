@@ -6,6 +6,9 @@ And many functions are modified based on [SSD-tensorflow project](https://github
 Author:
 	Zhisheng Zou zzsshun13@gmail.com
 
+# pretrained model 
+1. [Google drive](https://drive.google.com/open?id=1kkRyVrx9iFtwEar6OJBKWNVyTLSYsF28)
+
 # environment
 ` python2.7/python3.5 ` 
 
