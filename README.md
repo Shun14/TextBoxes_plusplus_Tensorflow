@@ -49,4 +49,4 @@ Author:
 
 # Note:
 
-1. when you training the model, you can run the eval_result.py to eval your model and save the result
+1. when you are training the model, you can run the eval_result.py to eval your model and save the result
