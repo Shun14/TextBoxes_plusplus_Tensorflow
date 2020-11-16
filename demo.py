@@ -12,7 +12,9 @@ sys.path.append('./')
 from nets import txtbox_384, np_methods, txtbox_768
 from processing import ssd_vgg_preprocessing
 
-os.environ['CUDA_VISIBLE_DEVICES'] = '3' #using GPU 0
+os.environ['CUDA_VISIBLE_DEVICES'] = '0' #using GPU 0
+class MyError(Exception):
+    pass
 
 def plt_bboxes(img, classes, scores, bboxes, figsize=(10,10), linewidth=1.5):
     """Visualize bounding boxes. Largely inspired by SSD-MXNET!
@@ -59,13 +61,14 @@ print('reuse:',reuse)
 with slim.arg_scope(txt_net.arg_scope(data_format=data_format)):
     predictions,localisations, logits, end_points = txt_net.net(image_4d, is_training=False, reuse=reuse)
 
-ckpt_dir = 'model'
+ckpt_dir = 'model/ckpt'
 
 isess.run(tf.global_variables_initializer())
 
 saver = tf.train.Saver()
 
 ckpt_filename = tf.train.latest_checkpoint(ckpt_dir)
+
 if ckpt_dir and ckpt_filename:
     print('checkpoint:',ckpt_dir, os.getcwd(), ckpt_filename)
     saver.restore(isess, ckpt_filename)
@@ -108,5 +111,5 @@ if ckpt_dir and ckpt_filename:
     cv2.imwrite(os.path.join(path,'demo_res.png'), img_with_bbox)
     print('detection finished')
 else:
-    raise ('no ckpt')
+    raise MyError('no ckpt')
 

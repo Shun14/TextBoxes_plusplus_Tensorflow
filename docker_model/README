@@ -1,0 +1,2 @@
+- requirements: you need to install nvidia docker from https://github.com/NVIDIA/nvidia-docker
+- use `make build` to build the docker and `make interactive` to get inside and work interactively. 
